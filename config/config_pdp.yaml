@@ -1,0 +1,10 @@
+
+DATA:
+  input_resolution:  224
+  output_resolution:  64
+  seq_len: 5
+  gazefollow_base_dir: "/data/add_disk0/qiaomu/datasets/gaze/gazefollow"
+  vat_base_dir: "/data/add_disk0/qiaomu/datasets/gaze/videoattentiontarget"
+  gazefollow_depth_dir: "/data/add_disk0/qiaomu/datasets/gaze/Gazefollow_Depth"  
+  vat_depth_dir: "/data/add_disk0/qiaomu/datasets/gaze/Videoatt_Depth"
+  ckpt_dir_videoatt: "/data/add_disk0/qiaomu/ckpts/videoatttarget"
