@@ -82,7 +82,7 @@ def train(args):
     kl_div_loss = KL_div_modified(reduction='batchmean') # modify the kl divergence loss so it can deal with 0 probabilities
 
     # Optimizer
-    att_param_names = ['qkv_proj.weight', 'qkv_proj.bias']
+    att_param_names = ['layernorm.weight', 'layernorm.bias', 'qkv_proj.weight', 'qkv_proj.bias']
     att_params = list(filter(lambda kv: kv[0] in att_param_names , model.named_parameters()))
     base_params = list(filter(lambda kv: kv[0] not in att_param_names , model.named_parameters())) 
     
@@ -90,7 +90,12 @@ def train(args):
         {'params': [temp[1] for temp in base_params]},
         {'params': [temp[1] for temp in att_params], 'lr': args.lr/2}
                 ], lr=args.lr)
-    sche = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15, 22, 30], gamma=0.2)
+    
+    #optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+    if args.not_use_depth:
+        sche = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15, 22, 30], gamma=0.2)
+    else:
+        sche = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[18, 22, 28], gamma=0.2)
     step = 0
     calc_lr = 0
     if args.resume!=-1:
@@ -270,7 +275,7 @@ if __name__ == "__main__":
     parser.add_argument('--lambda_', type=float, default=20.0)
     parser.add_argument("--lr", type=float, default=2.5e-4, help="learning rate")
     parser.add_argument("--batch_size", type=int, default=80, help="batch size")
-    parser.add_argument("--epochs", type=int, default=40, help="number of epochs")
+    parser.add_argument("--epochs", type=int, default=35, help="number of epochs")
     parser.add_argument("--print_every", type=int, default=100, help="print every ___ iterations")
     parser.add_argument("--save_every", type=int, default=1, help="save every ___ epochs")
     parser.add_argument("--resume", type=int, default=-1, help="which epoch to resume from")

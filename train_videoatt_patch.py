@@ -53,8 +53,7 @@ def get_optimize_list(args, model):
     optimize_list=[]
 
     # Optimizer
-    if 'baseline_single' in args.model:
-        optimize_list += [
+    optimize_list += [
             {'params': model.compress_conv1.parameters(), 'lr': args.lr}, # added for scene encoding
             {'params': model.compress_conv2.parameters(), 'lr': args.lr},
             {'params': model.deconv1.parameters(), 'lr': args.lr},
@@ -103,7 +102,7 @@ def train(args):
                                              collate_fn=custom_collate_fn)
 
     if args.resume==-1:
-        setting_name = f"{args.remark}lr{args.lr}bs{args.batch_size}_ampfactor{args.loss_amp_factor}_lambda{args.lambda_}" 
+        setting_name = f"{args.remark}depth_{args.use_depth}_lr{args.lr}bs{args.batch_size}_ampfactor{args.loss_amp_factor}_lambda{args.lambda_}" 
         if args.debug:
             setting_name += '_debug'
     else:
@@ -126,8 +125,8 @@ def train(args):
 
     # Define device
     print("Constructing model")
-    if args.model=='baseline_single':
-        model = ModelSpatialTemporal_PDP(args, seq_len=args.DATA.seq_len)
+    
+    model = ModelSpatialTemporal_PDP(args, seq_len=args.DATA.seq_len)
     model.cuda()
 
     if args.init_weights:
@@ -347,7 +346,6 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default='0', help="gpu id")
     parser.add_argument('--project_name', default='train_videoatt_pdp')
     parser.add_argument('--setting_name', default='')
-    parser.add_argument('--model', default='baseline_single')
     parser.add_argument('--not_use_temporal_att', dest='use_temporal_att', action='store_false')
     parser.add_argument('--config_file', default='./config/config_pdp.yaml')
     parser.add_argument('--debug', action='store_true')
