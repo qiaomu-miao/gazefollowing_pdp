@@ -23,7 +23,6 @@ class ModelSpatial_PDP(nn.Module):
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
         self.maxpool_final = nn.AdaptiveMaxPool1d(1, return_indices=False)
         self.avgpool = nn.AvgPool2d(7, stride=1)
-        self.layernorm = nn.LayerNorm(512)
         
         layers_scene = [3, 4, 6, 3, 2]
         layers_face = [3, 4, 6, 3, 2]
@@ -127,7 +126,6 @@ class ModelSpatial_PDP(nn.Module):
         return nn.Sequential(*layers)
 
     def patch_attention(self, input):
-        input = self.layernorm(input)
         q,k,v = torch.chunk(self.qkv_proj(input), 3, dim=2)
         attn_score_unnorm = torch.bmm(q, k.transpose(1, 2).contiguous())
         attn_scores = F.softmax(attn_score_unnorm, dim=2)
@@ -247,7 +245,6 @@ class ModelSpatialTemporal_PDP(nn.Module):
         self.use_temporal_att = args.use_temporal_att
         self.seq_len = seq_len
         self.patch_num = 7
-        self.layernorm = nn.LayerNorm(512)
          
         # scene pathway
         if self.use_depth:
@@ -355,7 +352,6 @@ class ModelSpatialTemporal_PDP(nn.Module):
         return nn.Sequential(*layers)
     
     def patch_attention(self, input):
-        input = self.layernorm(input)
         q,k,v = torch.chunk(self.qkv_proj(input), 3, dim=2)
         attn_score_unnorm = torch.bmm(q, k.transpose(1, 2).contiguous())
         attn_scores = F.softmax(attn_score_unnorm, dim=2)

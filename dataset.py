@@ -256,7 +256,7 @@ class VideoAttTarget_video_new(Dataset):
     # for transformer, output patchwise inout logits
     def __init__(self, args, test=False, imshow=False, seq_len=5):
         self.mode='train' if test==False else 'test'
-        anno_path = os.path.join(args.vat_base_dir, 'annotations', self.mode, f'anno_seq.pickle')
+        anno_path = os.path.join(args.vat_base_dir, 'annotations', f'anno_seq_{self.mode}.pickle')
         with open(anno_path, 'rb') as file:
             anno_pkl = pickle.load(file)
         
