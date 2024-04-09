@@ -179,6 +179,7 @@ def train(args):
             images, head, faces = img.cuda(), head_channel.cuda(), face.cuda()
             head_coords, gaze_coords = head_coords.float().cuda(), gaze_coords.float().cuda()
             depth_img = depth_img.float().cuda()
+            inout_label = inout_label.float().cuda()
             inout_logits_patch, gaze_heatmap = inout_logits_patch.float().cuda(), gaze_heatmap.cuda()
             inout_logits_patch, gaze_heatmap = inout_logits_patch.view(bs*T, -1), gaze_heatmap.view(bs*T, output_resolution, output_resolution)
             gaze_heatmap_pred, pred_inout_patches, inout_pred = model([images, head, faces, depth_img])
@@ -193,7 +194,6 @@ def train(args):
 
             l2_loss = mseloss_mean(gaze_heatmap_pred, gaze_heatmap)            
             l2_loss = l2_loss * args.loss_amp_factor
-            inout_label = inout_label.cuda().to(torch.float)
             
                 # cross entropy loss for in vs out
             if args.use_patch:

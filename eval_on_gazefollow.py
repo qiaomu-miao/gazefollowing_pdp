@@ -106,7 +106,6 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default='0', help="gpu id")
     parser.add_argument('--config_file', default='./config/config_pdp.yaml')
     parser.add_argument('--not_use_depth', dest='use_depth', action='store_false')
-    parser.add_argument('--model', default='baseline_single')
     parser.add_argument('--not_use_patch', dest='use_patch', action='store_false')
     parser.add_argument("--model_weights", type=str, default="/nfs/bigbrain.cs.stonybrook.edu/add_disk0/qiaomu/ckpts/gaze/pdp_spatial.pt", help="initial weights")
     parser.add_argument("--batch_size", type=int, default=80, help="batch size")

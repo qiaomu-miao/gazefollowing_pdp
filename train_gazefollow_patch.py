@@ -92,7 +92,7 @@ def train(args):
                 ], lr=args.lr)
     
     #optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    if args.not_use_depth:
+    if not args.use_depth:
         sche = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15, 22, 30], gamma=0.2)
     else:
         sche = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[18, 22, 28], gamma=0.2)
