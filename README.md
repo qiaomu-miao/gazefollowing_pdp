@@ -11,9 +11,9 @@ cudatoolkit=11.3.1 <br>
 
 Download the images and annotations for [GazeFollow](https://www.dropbox.com/s/3ejt9pm57ht2ed4/gazefollow_extended.zip?dl=0) and [VideoAttentionTarget](https://www.dropbox.com/s/8ep3y1hd74wdjy5/videoattentiontarget.zip?dl=0).
 
-Download the depth maps for GazeFollow and VideoAttentionTarget datasets [here](https://drive.google.com/drive/folders/1vA8Qks5hyjK-_ivxI8ocWOuyLxLg31Fq?usp=sharing).
+Download the depth maps for GazeFollow and VideoAttentionTarget datasets [here](https://zenodo.org/records/21878961?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjcyOTU2Yzk4LTU3NjctNGRjNC04YmIyLTBhYjA0ZWQ5NTIyOCIsImRhdGEiOnt9LCJyYW5kb20iOiI5NmQ0Y2E3MTYxMWE4ZTI0NGY4ZThiZmY4N2E1NTEyYSJ9.cBByLBpDfMWBchTgf2dLuTSEh0YnLf8iq1eLx0e7132DS7aJmcakobJTuk8c4Br63tZ9HBA-wl-IW_s3dpuNlw).
 
-Download the initial weights for training on GazeFollow and VideoAttentionTarget datasets [here](https://drive.google.com/drive/folders/14Oyh0aXFXbTJ9BjS919XGmvd54TBN4ig?usp=sharing).
+Download the initial weights for training on GazeFollow and VideoAttentionTarget datasets [here](https://github.com/qiaomu-miao/gazefollowing_pdp/releases/tag/init-weights-v1).
 
 Modify config_pdp.yaml with your datasets and depth map directories accordingly.
 
