@@ -42,7 +42,7 @@ python train_videoatt_patch.py --init_weights {initial_weights_for_temporal_trai
 
 ## Pretrained Models
 
-[Here](https://drive.google.com/drive/folders/1A9nqTvdGXB7F-rwU9g2bJItrSfT1EGob?usp=sharing) we provide the pretrained model weights on GazeFollow and VideoAttentionTarget datasets.
+[Here](https://github.com/qiaomu-miao/gazefollowing_pdp/releases/tag/pretrained-models) we provide the pretrained model weights on GazeFollow and VideoAttentionTarget datasets.
 
 ## Citation
 If you find our code useful, please consider citing our paper:
