@@ -29,7 +29,7 @@ python train_gazefollow_patch.py --init_weights {initial_weights_for_spatial_tra
 ```
 
 ### Training on VideoAttentionTarget
-For VideoAttentionTarget, we split the dataset into 5-frame sequences in training and test sets and stored the splits [here](https://drive.google.com/drive/folders/1Rt_Ejm918Et5qtqARvVfDUurkggF7tlw?usp=sharing).
+For VideoAttentionTarget, we split the dataset into 5-frame sequences in training and test sets and stored the splits [here](https://github.com/qiaomu-miao/gazefollowing_pdp/releases/tag/vat_sequences).
 For training on VideoAttenionTarget dataset, run:
 ```
 python train_videoatt_patch.py --init_weights {initial_weights_for_temporal_training.pt}
